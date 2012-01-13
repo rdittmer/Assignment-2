@@ -57,3 +57,27 @@
  }
  
  
+ //boolean function
+ function getBestScore( playerScore, bestScore, playerNum )
+ {
+ 	if ( playerScore > bestScore || playerScore == bestScore )
+ 	{	
+ 		console.log( playerName[ playerNum ] + " now has the best score." );
+ 		return true;
+ 	}
+ 	else
+ 		return false;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
