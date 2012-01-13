@@ -7,12 +7,16 @@
  var friendOnline;
  var playerName;
  var playerScore;
+ var winningMsg;
+ var deathLimit;
  
  
  friendReady  = true;
  friendOnline = true;
  playerName   = [ "ryan","jason","moe" ];
  playerScore  = [  0,    0,   0  ];
+ winningMsg   = " has won the game!";
+ deathLimit   = 5;
  
  
  //procedure
@@ -23,18 +27,18 @@
  else
  	console.log( "I am just going to play by myself." );
  	
- playerScore = playGame( playerScore, 0 );
+ console.log( "The game will start and each player gets to play until they reach " + deathLimit + " deaths. \nThe score is then counted and whoever has the highest wins! \nThe players are entering the match: " );
+ 	
+ playerScore = playGame( playerScore, deathLimit );
  
  
  //number function
- function getKills( playerNum )
+ function getKills( playerNum, deathLimit )
  {
- 	var deathLimit;
  	var randomNum;
  	var numDeaths;
  	var numKills;
- 	
- 	deathLimit = 5;
+ 
  	randomNum  = 0;
  	numDeaths  = 0;
  	numKills   = 0;
@@ -73,12 +77,13 @@
  
  
   //array function
- function playGame( scores, zero )
+ function playGame( scores, deathLimit )
  {
  	var numKills;
  	var totalScore;
  	var bestScore;
  	var hasBestScore;
+ 	var bestName;
  	
  	numKills      = 0;
  	totalScore    = 0;
@@ -87,7 +92,7 @@
  	
  	for ( var i = 0; i < scores.length; ++i )
  	{
- 		numKills = getKills( i );
+ 		numKills = getKills( i, deathLimit );
  		totalScore   = ( numKills * 100 );
  		scores[ i ]  = totalScore;
  		
@@ -95,11 +100,28 @@
  		
  		hasBestScore = getBestScore( scores[ i ], bestScore, i );
  		if ( hasBestScore == true )
+ 		{
  			bestScore = scores[ i ];
+ 			bestName  = getBestName( playerName[ i ], winningMsg );
+ 		}
  	}	
+ 	console.log( bestName );
  	return scores;
  }
-  
+ 
+ 
+ //string function
+ function getBestName ( playerName, winningMsg )
+ {
+ 	var winner;
+ 	
+ 	winner = "";
+ 	
+ 	winner = playerName.concat( winningMsg );
+ 	winner = winner.toUpperCase();
+ 	
+ 	return winner;
+ }
  
  
  
