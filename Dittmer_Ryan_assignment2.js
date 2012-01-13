@@ -23,9 +23,11 @@
  else
  	console.log( "I am just going to play by myself." );
  	
- 	
+ playerScore = playGame( playerScore, 0 );
+ 
+ 
  //number function
- function getScore( playerNum )
+ function getKills( playerNum )
  {
  	var deathLimit;
  	var randomNum;
@@ -70,6 +72,34 @@
  }
  
  
+  //array function
+ function playGame( scores, zero )
+ {
+ 	var numKills;
+ 	var totalScore;
+ 	var bestScore;
+ 	var hasBestScore;
+ 	
+ 	numKills      = 0;
+ 	totalScore    = 0;
+ 	bestScore     = 0;
+ 	hasBestScore  = false;
+ 	
+ 	for ( var i = 0; i < scores.length; ++i )
+ 	{
+ 		numKills = getKills( i );
+ 		totalScore   = ( numKills * 100 );
+ 		scores[ i ]  = totalScore;
+ 		
+ 		console.log( playerName[ i ] + "'s total score is " + scores[ i ] );
+ 		
+ 		hasBestScore = getBestScore( scores[ i ], bestScore, i );
+ 		if ( hasBestScore == true )
+ 			bestScore = scores[ i ];
+ 	}	
+ 	return scores;
+ }
+  
  
  
  
